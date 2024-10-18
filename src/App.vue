@@ -8,9 +8,9 @@ import VendorPage from "./components/vendorPage.vue";
       <div class="titleWrapper">
         <span>Vending Machine</span>
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque
-          inventore repellat nobis recusandae velit porro reiciendis quaerat
-          excepturi nulla nisi.
+          The Vending Machine project is a user-friendly Vue.js application that
+          simulates a real vending machine. Users can easily input item numbers
+          and view their selections through an intuitive interface.
         </p>
       </div>
     </div>
