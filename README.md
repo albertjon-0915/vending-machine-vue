@@ -58,7 +58,7 @@ npm run dev
 
 ![alt text](image-2.png)
 
-## 3. Insert desired bill
+## 3. Add or minus desired bill by clicking on the bill desired
 
 ![alt text](image-4.png)
 
@@ -72,7 +72,7 @@ npm run dev
 
 ![alt text](image-7.png)
 
-## 6. If conditions is not satisfied regarding the input field, item number, bill, owed and change, it will display an error message
+## 6. If conditions is not satisfied regarding the bill, owed and change, it will display an error message
 
 ![alt text](image-5.png)
 
