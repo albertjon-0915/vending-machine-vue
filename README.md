@@ -60,4 +60,19 @@ npm run lint
 
 # Usage
 
-Input the number of item you want to purchase using the keypad
+## 1. You can browse item on vending machine
+
+![alt text](image.png)
+
+## 2.Input the number of item you want to purchase using the keypad
+
+![alt text](image-2.png)
+
+## 3. Insert desired bill
+
+![alt text](image-4.png)
+
+## 4. Hit ok and it will display the change
+
+![alt text](image-3.png)
+
