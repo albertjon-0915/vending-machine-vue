@@ -6,10 +6,6 @@ This template should help get you started developing with Vue 3 in Vite.
 
 [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
 
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
-
 ## Project Dependencies
 
 The following dependencies are required to run the application:
@@ -38,7 +34,7 @@ The following scripts are available:
     - preview: Starts the preview server using Vite.
     - lint: Runs ESLint to check for code errors and warnings.
 
-## Project Setup/Installation
+# Project Setup/Installation
 
 ```sh
 npm install
@@ -61,3 +57,7 @@ npm run build
 ```sh
 npm run lint
 ```
+
+# Usage
+
+Input the number of item you want to purchase using the keypad
