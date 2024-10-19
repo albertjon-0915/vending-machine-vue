@@ -61,7 +61,14 @@ npm run dev
 
 ## 2.Input the number of item you want to purchase using the keypad
 
+Note: 
+
+ '*' - reset button
+ 'Del' - delete button
+
 ![alt text](image-2.png)
+
+
 
 ## 3. Add or minus desired bill by clicking on the bill desired
 
