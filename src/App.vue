@@ -2,6 +2,7 @@
 import VendorPage from "./components/vendorPage.vue";
 </script>
 
+<!-- Main page -->
 <template>
   <div>
     <div class="titleSection">
@@ -19,7 +20,6 @@ import VendorPage from "./components/vendorPage.vue";
   </div>
 </template>
 
-<!-- scoped : it will just reference every element(for example 'h1' in this component template) in this particular component -->
 <style scoped lang="scss">
 .titleSection {
   display: grid;

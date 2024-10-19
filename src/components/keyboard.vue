@@ -118,8 +118,10 @@ watch(itemNumber, (newValue) => {
 });
 </script>
 
+<!-- Display keyboard -->
 <template>
   <div class="keyboardContainer">
+    <!-- input field section to get itemNumber from-->
     <form @submit.prevent="computeChange">
       <input
         type="text"
@@ -130,6 +132,7 @@ watch(itemNumber, (newValue) => {
       <button>ok</button>
     </form>
 
+    <!-- Monitor payment statuses[bills, owed, change] section-->
     <div class="payment">
       <div
         class="errPrompt"
@@ -161,6 +164,7 @@ watch(itemNumber, (newValue) => {
       </div>
     </div>
 
+    <!-- keypad section -->
     <ul class="keypad">
       <li v-for="key in keys" :key="key">
         <div @click="keyAction(key)">
@@ -169,10 +173,10 @@ watch(itemNumber, (newValue) => {
       </li>
     </ul>
 
+    <!-- add/minus/monitor bills section-->
     <h3 class="coinsTitle">
       Insert bill/coin: <span class="bill">Php {{ bill }}</span>
     </h3>
-
     <ul class="coins">
       <li v-for="peso in pesoBills" :key="peso" @click.stop="addBill(peso)">
         <div>
@@ -187,12 +191,20 @@ watch(itemNumber, (newValue) => {
 </template>
 
 <style scoped lang="scss">
+$yellowish-bg-input: #be921a;
+$reddish-color: #ff0037;
+$pinkish-color: #e9b7ce;
+$cement-color: #61817f;
+$border-color: #80808070;
+$greenish-color: #68ad00;
+
 .keyboardContainer {
   padding: 2em 0;
   width: 100%;
   height: auto;
 }
 
+// =================== FORM =================== //
 form {
   display: flex;
   gap: 0.5em;
@@ -205,71 +217,71 @@ form {
 
   input {
     all: unset;
-    border: 1px solid #b98800;
+    border: 1px solid $yellowish-bg-input;
     font-size: 1.5em;
     width: 100%;
     padding: 0 2em;
     text-align: right;
 
-    &:focus,
-    &:focus-visible,
     &:hover {
-      outline: 3px solid #beb41a;
+      outline: 3px solid $yellowish-bg-input;
     }
 
     &::placeholder {
       font-size: clamp(0.65em, 0.8vw, 0.8em);
-      color: rgba(185, 136, 0, 0.4);
+      color: lighten($yellowish-bg-input, 25%);
     }
   }
 
   button {
     border: none;
     border-radius: 5px;
-    box-shadow: -1px 1px 5px 1px #8080804b;
+    box-shadow: -1px 1px 5px 1px lighten($border-color, 10%);
     width: 10em;
     cursor: pointer;
   }
 }
 
+// =================== PAYMENT =================== //
 .payment {
   font-size: 0.85em;
-  color: #444444;
+  color: darken($cement-color, 20%);
   margin-bottom: 3em;
 
   .owedBill {
     font-weight: bold;
     font-size: 1.2em;
-    color: #ff0037;
+    color: $reddish-color;
   }
 
   .change {
     span {
       font-weight: 700;
       font-size: 1.2em;
-      color: #61817f;
+      color: $cement-color;
     }
   }
 
   .errPrompt {
     margin: 0.7em 0;
-    background: #e9b7ce;
+    background: $pinkish-color;
     padding: 0.2em 1em;
-    color: #ffff;
+    color: white;
 
     span {
-      color: #ff0037;
+      color: $reddish-color;
     }
   }
 }
 
+// =================== KEYPAD =================== //
 .keypad {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1em;
   padding: 3em 1em;
   border-radius: 5px;
-  border: 1px solid rgba(128, 128, 128, 0.438);
+  border: 1px solid $border-color;
 
   li {
     all: unset;
@@ -282,12 +294,13 @@ form {
       width: 5em;
       aspect-ratio: 1 / 1;
       border-radius: 50%;
-      border: 1px solid rgba(128, 128, 128, 0.438);
+      border: 1px solid $border-color;
       cursor: pointer;
     }
   }
 }
 
+// =================== COINS =================== //
 .coinsTitle {
   margin: 3em 0 1em 0;
 }
@@ -299,7 +312,7 @@ form {
 
   li {
     all: unset;
-    border: 1px solid #80808070;
+    border: 1px solid $border-color;
     padding: 1em;
     cursor: pointer;
 
@@ -320,10 +333,11 @@ form {
   }
 }
 
+// ====================================== //
 // being called from different div elements so i set this aside for now
 .bill {
   font-weight: bold;
   font-size: 1.2em;
-  color: #68ad00;
+  color: $greenish-color;
 }
 </style>

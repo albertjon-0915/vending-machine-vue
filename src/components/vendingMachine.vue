@@ -1,6 +1,7 @@
 <script setup>
 import { defineProps, ref } from "vue";
 
+// get props from parent
 const props = defineProps({
   vendingItems: Array,
 });
@@ -8,6 +9,7 @@ const props = defineProps({
 const itemList = ref([...props.vendingItems]);
 </script>
 
+<!-- Display vending machine -->
 <template>
   <div class="vendingMachine">
     <div class="wrapperContainer">
@@ -32,6 +34,7 @@ $pesoBill-bg-color: #68ad00;
 $border-bgPrice-color: #808080;
 $secondary-bg-color: #07ebdca1;
 
+// =================== Containers =================== //
 .vendingMachine {
   display: grid;
   place-items: center;
@@ -65,6 +68,7 @@ $secondary-bg-color: #07ebdca1;
   }
 }
 
+// ============== vendingMachine Items =============== //
 .itemList {
   display: flex;
   display: grid;
@@ -124,6 +128,7 @@ $secondary-bg-color: #07ebdca1;
   }
 }
 
+// ================ media queries ================ //
 @media (max-width: 1200px) {
   .vendingMachine {
     height: 70vh;
