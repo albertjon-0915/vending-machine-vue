@@ -41,7 +41,7 @@ The following scripts are available:
     - preview: Starts the preview server using Vite.
     - lint: Runs ESLint to check for code errors and warnings.
 
-# Project Setup/Installation
+# Installation
 
 ```sh
 npm install
