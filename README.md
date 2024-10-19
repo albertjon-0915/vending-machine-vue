@@ -4,6 +4,11 @@ The Vending Machine project is a simple user-friendly Vue.js application that
 simulates a real vending machine. Users can easily input item numbers
 and view their selections through an intuitive interface.
 
+## Table of Contents
+
+-    [Installation](#installation)
+-    [Usage](#usage)
+
 ## Recommended IDE Setup
 
 [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
@@ -14,18 +19,18 @@ The following dependencies are required to run the application:
 
 ### Production Dependencies
 
-    - vue: ^3.5.12
+    vue: ^3.5.12
 
 ### Development Dependencies
 
-    - @eslint/js: ^9.12.0
-    - @vitejs/plugin-vue: ^5.1.4
-    - @vitejs/plugin-vue-jsx: ^4.0.1
-    - eslint: ^9.12.0
-    - eslint-plugin-vue: ^9.29.0
-    - sass: ^1.80.2
-    - sass-loader: ^16.0.2
-    - vite: ^5.4.8
+    @eslint/js: ^9.12.0
+    @vitejs/plugin-vue: ^5.1.4
+    @vitejs/plugin-vue-jsx: ^4.0.1
+    eslint: ^9.12.0
+    eslint-plugin-vue: ^9.29.0
+    sass: ^1.80.2
+    sass-loader: ^16.0.2
+    vite: ^5.4.8
 
 ### Scripts
 
