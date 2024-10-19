@@ -132,7 +132,7 @@ watch(itemNumber, (newValue) => {
       <button>ok</button>
     </form>
 
-    <!-- Monitor payment statuses[bills, owed, change] section-->
+    <!-- Monitor payment statuses - [bills, owed, change] section-->
     <div class="payment">
       <div
         class="errPrompt"

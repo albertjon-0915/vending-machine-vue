@@ -63,8 +63,8 @@ npm run dev
 
 Note: 
 
- '*' - reset button
- 'Del' - delete button
+    '*' - reset button
+    'Del' - delete button
 
 ![alt text](image-2.png)
 
