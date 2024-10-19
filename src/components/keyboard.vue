@@ -12,6 +12,7 @@ const pesoBills = [1000, 500, 100, 50, 20, 10, 5, 1];
 const vendingNewArr = ref([...props.vendingItems]);
 
 // values for items on the vending machine
+// can be put on an obj or array but for now it will be declared as such
 const itemNumber = ref(0);
 const isOnItemList = ref(true);
 const isCredentialsIncomplete = ref(true);

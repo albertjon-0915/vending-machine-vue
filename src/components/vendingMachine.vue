@@ -26,21 +26,17 @@ const itemList = ref([...props.vendingItems]);
 </template>
 
 <style lang="scss" scoped>
+$vendingM-bg-pr-color: #eeeeee;
+$vendingM-bg-sc-color: #dddddd;
+$pesoBill-bg-color: #68ad00;
+$border-bgPrice-color: #808080;
+$secondary-bg-color: #07ebdca1;
+
 .vendingMachine {
   display: grid;
   place-items: center;
   height: 100vh;
   padding: clamp(0em, 1vw, 1em) clamp(0em, 2vw, 2em);
-
-  @media (max-width: 992px) {
-    height: 70vh;
-    padding: 3em 0;
-  }
-
-  @media (max-width: 768px) {
-    height: 50vh;
-    padding: 0;
-  }
 
   .wrapperContainer {
     $padding-small: clamp(1em, 2vw, 2em);
@@ -48,7 +44,7 @@ const itemList = ref([...props.vendingItems]);
 
     width: 95%;
     height: 100%;
-    background: #eeeeee;
+    background: $vendingM-bg-pr-color;
     border-radius: 5px;
     display: flex;
     justify-content: end;
@@ -64,7 +60,7 @@ const itemList = ref([...props.vendingItems]);
       min-width: 45vw;
       width: 100%;
       height: 100%;
-      background: #dddddd;
+      background: $vendingM-bg-sc-color;
     }
   }
 }
@@ -74,24 +70,11 @@ const itemList = ref([...props.vendingItems]);
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   place-items: center;
+  height: 100vh;
   overflow-x: hidden;
   overflow-y: auto;
   padding: 0.5em;
   gap: 1em;
-
-  @media (max-width: 1200px) {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2em;
-  }
-
-  @media (max-width: 768px) {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1em;
-  }
-
-  @media (max-width: 576px) {
-    grid-template-columns: repeat(2, 1fr);
-  }
 
   li {
     all: unset;
@@ -105,31 +88,31 @@ const itemList = ref([...props.vendingItems]);
     width: clamp(5em, 12vw, 15em);
     padding: 0.5em 0;
     border-radius: 10px;
-    border: 1px solid rgba(128, 128, 128, 0.2);
-
-    @media (max-width: 1200px) {
-      padding: 0.5em 2em;
-    }
+    border: 1px solid lighten($border-bgPrice-color, 25%);
 
     .itemNumber {
       margin: 0.5em 0;
       padding: 0.5em clamp(1.5em, 2.5vw, 3em);
       border-radius: 50%;
-      border: 1px solid #808080;
-      background: radial-gradient(circle at center, #8080808c, #808080);
-      color: #ffff;
+      border: 1px solid $border-bgPrice-color;
+      background: radial-gradient(
+        circle at center,
+        lighten($border-bgPrice-color, 15%),
+        $border-bgPrice-color
+      );
+      color: $vendingM-bg-pr-color;
       font-weight: 900;
     }
 
     .bill {
       font-size: 1.2em;
       font-weight: 700;
-      color: #68ad00;
+      color: $pesoBill-bg-color;
     }
 
     img {
       filter: grayscale(0.6);
-      box-shadow: -2px 1px 10px 1px #07ebdca1;
+      box-shadow: -2px 1px 10px 1px $secondary-bg-color;
       border-radius: 50%;
       width: clamp(3em, 6vw, 6em);
       aspect-ratio: 1 / 1;
@@ -137,6 +120,47 @@ const itemList = ref([...props.vendingItems]);
 
     h2 {
       margin-bottom: clamp(0.5em, 1vw, 1em);
+    }
+  }
+}
+
+@media (max-width: 1200px) {
+  .vendingMachine {
+    height: 70vh;
+    padding: 3em 0;
+  }
+
+  .itemList {
+    height: 70vh;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2em;
+
+    li {
+      padding: 0.5em 2em;
+    }
+  }
+}
+@media (max-width: 992px) {
+}
+@media (max-width: 768px) {
+  .vendingMachine {
+    height: 50vh;
+    padding: 0;
+  }
+
+  .itemList {
+    height: 50vh;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1em;
+  }
+}
+@media (max-width: 576px) {
+  .itemList {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5em;
+
+    li {
+      padding: 0.5em 1.5em;
     }
   }
 }
