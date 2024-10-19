@@ -2,22 +2,32 @@
 import { ref } from "vue";
 import Keyboard from "./keyboard.vue";
 import VendingMachine from "./vendingMachine.vue";
+import VendingMachineLogo from '../assets/vendingMachine.jpg'
 
 const vendingItems = ref([
   {
+    itemImg: VendingMachineLogo,
     itemTitle: "one",
     itemNo: 1,
     itemPrice: 1,
   },
   {
+    itemImg: VendingMachineLogo,
     itemTitle: "two",
     itemNo: 2,
     itemPrice: 2,
   },
   {
+    itemImg: VendingMachineLogo,
     itemTitle: "three",
     itemNo: 3,
     itemPrice: 3,
+  },
+    {
+    itemImg: VendingMachineLogo,
+    itemTitle: "four",
+    itemNo: 4,
+    itemPrice: 4,
   },
 ]);
 </script>

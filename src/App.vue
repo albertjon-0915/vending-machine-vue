@@ -40,8 +40,8 @@ import VendorPage from "./components/vendorPage.vue";
       color: #000000;
       font-size: clamp(2.5em, 3.5vw, 3.5em);
       font-family: "Bungee", sans-serif;
-      // font: 3.5em "Bungee";
     }
+
     p {
       max-width: clamp(30em, 50vw, 50em);
       font-size: clamp(0.8em, 1vw, 1em);

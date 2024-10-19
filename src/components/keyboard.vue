@@ -1,80 +1,120 @@
 <script setup>
 import { ref, defineProps, watch } from "vue";
 
+// get props from parent
 const props = defineProps({
   vendingItems: Array,
 });
 
+// values for keys, bills base on ph peso, and vending machine items
 const keys = [1, 2, 3, 4, 5, 6, 7, 8, 9, "*", 0, "Del"];
-const bills = [1000, 500, 100, 50, 20, 10, 5, 1];
-const itemNumber = ref(0);
-const toPay = ref(0);
+const pesoBills = [1000, 500, 100, 50, 20, 10, 5, 1];
 const vendingNewArr = ref([...props.vendingItems]);
-const owedBill = ref(0);
+
+// values for items on the vending machine
+const itemNumber = ref(0);
 const isOnItemList = ref(true);
+const isCredentialsIncomplete = ref(true);
+const isInsufficientBal = ref(true);
+
+// values to be computed
+const bill = ref(0);
+const owedBill = ref(0);
 const changeBill = ref("");
 
+// Reset our values
+const reset = () => {
+  bill.value = 0;
+  owedBill.value = 0;
+  changeBill.value = "";
+
+  itemNumber.value = 0;
+  isOnItemList.value = true;
+  isCredentialsIncomplete.value = true;
+  isInsufficientBal.value = true;
+};
+
+// keyboard onClick actions function
+const keyAction = (item) => {
+  if (item === "*") reset();
+
+  if (item === "Del") {
+    let condition = String(itemNumber.value).length > 1;
+    let newNum = itemNumber.value.toString().slice(0, -1);
+
+    condition ? (itemNumber.value = parseInt(newNum)) : (itemNumber.value = 0);
+  }
+
+  const newItemNum = parseInt((itemNumber.value += item.toString()));
+
+  return (itemNumber.value = newItemNum);
+};
+
+// add bills for payment function
+const addBill = (item) => {
+  const newbill = (bill.value += item);
+  return (bill.value = newbill);
+};
+
+// minus bills for payment function
+const minusBill = (item) => {
+  if (item > bill.value) return;
+
+  const newbill = (bill.value -= item);
+  return (bill.value = newbill);
+};
+
+// compute change base on bill value function
 const computeChange = () => {
-  console.log("compute");
-
-  let change = toPay.value - owedBill.value;
   const changeArr = [];
+  const isZeroBill = bill.value === 0;
+  const isZeroOwed = owedBill.value === 0;
+  let change = bill.value - owedBill.value;
 
-  console.log(change, changeArr);
+  if (isZeroBill || isZeroOwed) return (isCredentialsIncomplete.value = false);
 
-  bills.map((item) => {
+  if (bill.value < owedBill.value) return (isInsufficientBal.value = false);
+
+  // loops peso bills to get the change by bill/coins
+  pesoBills.forEach((item) => {
     const count = Math.floor(change / item);
 
-    if (count > 0) {
-      changeArr.push(`${count} - ${item} ${item < 20 ? "coins" : "bills"}, `);
+    const computation = () => {
+      let billOrCoins = item < 20 ? "coins" : "bills";
+      changeArr.push(`${count} - ${item} ${billOrCoins}, `);
       change -= count * item;
-    } else {
-      toPay.value = 0;
-      owedBill.value = 0;
-      itemNumber.value = 0;
-    }
+    };
+
+    count > 0 ? computation() : reset();
   });
 
   return (changeBill.value = changeArr.join("\n"));
 };
 
+// monitor the changes in input base on our keyboard/input field value
 watch(itemNumber, (newValue) => {
   const findItem = vendingNewArr.value.find(
     (item) => item.itemNo == itemNumber.value
   );
 
-  if (findItem) return (owedBill.value = findItem.itemPrice);
-  if (newValue === 0) return (isOnItemList.value = true);
+  const setItemCondition = (condition) => {
+    isOnItemList.value = condition;
+  };
+
+  if (findItem) {
+    setItemCondition(true);
+
+    isCredentialsIncomplete.value = true;
+    isInsufficientBal.value = true;
+
+    return (owedBill.value = findItem.itemPrice);
+  }
+
   if (!findItem) {
     owedBill.value = 0;
-    return (isOnItemList.value = false);
+    newValue === 0 ? setItemCondition(true) : setItemCondition(false);
   }
 });
-
-const keyAction = (item) => {
-  if (item === "*") return (itemNumber.value = 0);
-  if (item === "Del" && String(itemNumber.value).length > 1)
-    return (itemNumber.value = parseInt(
-      itemNumber.value.toString().slice(0, -1)
-    ));
-  if (item === "Del" && String(itemNumber.value).length === 1)
-    return (itemNumber.value = 0);
-
-  const newItemNum = parseInt((itemNumber.value += item.toString()));
-  return (itemNumber.value = newItemNum);
-};
-
-const addToPay = (bill) => {
-  const newToPay = (toPay.value += bill);
-  return (toPay.value = newToPay);
-};
-
-const minusBill = (bill) => {
-  if (bill > toPay.value) return;
-
-  const newToPay = (toPay.value -= bill);
-  return (toPay.value = newToPay);
-};
 </script>
 
 <template>
@@ -83,20 +123,30 @@ const minusBill = (bill) => {
       <input
         type="text"
         placeholder="input item number"
-        @keypress.prevent
-        @keyup.prevent
-        @keydown.prevent
+        @mousedown.prevent
         :value="itemNumber !== 0 ? itemNumber : ''"
       />
       <button>ok</button>
     </form>
+
     <div class="payment">
-      <div class="errPrompt" v-if="isOnItemList === false">
+      <div
+        class="errPrompt"
+        v-if="!isOnItemList || !isCredentialsIncomplete || !isInsufficientBal"
+      >
         <span> X </span>
-        Item not on the list
+        {{
+          !isOnItemList
+            ? "Item not on the list"
+            : !isCredentialsIncomplete
+            ? "Please input item number then choose bill to pay"
+            : !isInsufficientBal
+            ? "Insufficient balance"
+            : ""
+        }}
       </div>
       <div>
-        Payment: <span class="bill">Php {{ toPay }}</span>
+        Payment: <span class="bill">Php {{ bill }}</span>
       </div>
       <div>
         Owed:
@@ -109,6 +159,7 @@ const minusBill = (bill) => {
         <span> {{ changeBill }}</span>
       </div>
     </div>
+
     <ul class="keypad">
       <li v-for="key in keys" :key="key">
         <div @click="keyAction(key)">
@@ -117,15 +168,15 @@ const minusBill = (bill) => {
       </li>
     </ul>
 
-    <h3>
-      Insert bill/coin: <span class="bill">Php {{ toPay }}</span>
+    <h3 class="coinsTitle">
+      Insert bill/coin: <span class="bill">Php {{ bill }}</span>
     </h3>
 
     <ul class="coins">
-      <li v-for="bill in bills" :key="bill" @click.stop="addToPay(bill)">
+      <li v-for="peso in pesoBills" :key="peso" @click.stop="addBill(peso)">
         <div>
-          <span>{{ bill }}</span>
-          <div class="billCount" @click.stop="minusBill(bill)">
+          <span>{{ peso }}</span>
+          <div class="billCount" @click.stop="minusBill(peso)">
             <span>-</span>
           </div>
         </div>
@@ -180,41 +231,35 @@ form {
   }
 }
 
-.change {
-  span {
-    font-weight: 700;
-    font-size: 1.2em;
-    color: #61817f;
-  }
-}
-
-.errPrompt {
-  margin: 0.7em 0;
-  background: #e9b7ce;
-  padding: 0.2em 1em;
-  color: #ffff;
-
-  span {
-    color: #ff0037;
-  }
-}
-
 .payment {
   font-size: 0.85em;
   color: #444444;
   margin-bottom: 3em;
-}
 
-.owedBill {
-  font-weight: bold;
-  font-size: 1.2em;
-  color: #ff0037;
-}
+  .owedBill {
+    font-weight: bold;
+    font-size: 1.2em;
+    color: #ff0037;
+  }
 
-.bill {
-  font-weight: bold;
-  font-size: 1.2em;
-  color: rgb(104, 173, 0);
+  .change {
+    span {
+      font-weight: 700;
+      font-size: 1.2em;
+      color: #61817f;
+    }
+  }
+
+  .errPrompt {
+    margin: 0.7em 0;
+    background: #e9b7ce;
+    padding: 0.2em 1em;
+    color: #ffff;
+
+    span {
+      color: #ff0037;
+    }
+  }
 }
 
 .keypad {
@@ -242,7 +287,7 @@ form {
   }
 }
 
-h3 {
+.coinsTitle {
   margin: 3em 0 1em 0;
 }
 
@@ -272,5 +317,12 @@ h3 {
       }
     }
   }
+}
+
+// being called from different div elements so i set this aside for now
+.bill {
+  font-weight: bold;
+  font-size: 1.2em;
+  color: #68ad00;
 }
 </style>
