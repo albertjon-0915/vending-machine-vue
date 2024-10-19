@@ -74,7 +74,7 @@ Note:
 
 ![alt text](image-4.png)
 
-## 4. Hit ok and it will display the change
+## 4. Hit ok and it will compute and display the change
 
 ![alt text](image-3.png)
 
