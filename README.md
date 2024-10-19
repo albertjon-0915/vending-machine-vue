@@ -1,6 +1,8 @@
 # Vue Vendor Application
 
-This template should help get you started developing with Vue 3 in Vite.
+The Vending Machine project is a simple user-friendly Vue.js application that
+simulates a real vending machine. Users can easily input item numbers
+and view their selections through an intuitive interface.
 
 ## Recommended IDE Setup
 
@@ -69,3 +71,11 @@ npm run dev
 ![alt text](image-10.png)
 
 ![alt text](image-7.png)
+
+## 6. If conditions is not satisfied regarding the input field, item number, bill, owed and change, it will display an error message
+
+![alt text](image-5.png)
+
+![alt text](image-6.png)
+
+![alt text](image-8.png)
