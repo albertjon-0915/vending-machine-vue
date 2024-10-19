@@ -296,6 +296,11 @@ form {
       border-radius: 50%;
       border: 1px solid $border-color;
       cursor: pointer;
+      transition: all 0.2s ease-in-out;
+
+      &:hover {
+        background: lighten($border-color, 10%);
+      }
     }
   }
 }
@@ -316,6 +321,12 @@ form {
     padding: 1em;
     cursor: pointer;
 
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+      background: lighten($border-color, 10%);
+    }
+
     div {
       display: flex;
       justify-content: space-between;
@@ -323,6 +334,11 @@ form {
       .billCount {
         font-weight: 900;
         display: flex;
+        transition: all 0.2s ease-in-out;
+
+        &:hover {
+          background: lighten($reddish-color, 10%);
+        }
 
         span {
           padding: 0 0.5em;
