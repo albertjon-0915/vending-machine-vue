@@ -1,4 +1,4 @@
-# vue-vendor
+# Vue Vendor Application
 
 This template should help get you started developing with Vue 3 in Vite.
 
@@ -10,7 +10,31 @@ This template should help get you started developing with Vue 3 in Vite.
 
 See [Vite Configuration Reference](https://vite.dev/config/).
 
-## Project Setup
+## Project Dependencies
+
+The following dependencies are required to run the application:
+
+### Production Dependencies
+    - vue: ^3.5.12
+
+### Development Dependencies
+    - @eslint/js: ^9.12.0
+    - @vitejs/plugin-vue: ^5.1.4
+    - @vitejs/plugin-vue-jsx: ^4.0.1
+    - eslint: ^9.12.0
+    - eslint-plugin-vue: ^9.29.0
+    - sass: ^1.80.2
+    - sass-loader: ^16.0.2
+    - vite: ^5.4.8
+
+### Scripts
+The following scripts are available:
+    - dev: Starts the development server using Vite.
+    - build: Builds the application for production.
+    - preview: Starts the preview server using Vite.
+    - lint: Runs ESLint to check for code errors and warnings.
+
+## Project Setup/Installation
 
 ```sh
 npm install
