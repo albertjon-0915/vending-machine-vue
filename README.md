@@ -15,9 +15,11 @@ See [Vite Configuration Reference](https://vite.dev/config/).
 The following dependencies are required to run the application:
 
 ### Production Dependencies
+
     - vue: ^3.5.12
 
 ### Development Dependencies
+
     - @eslint/js: ^9.12.0
     - @vitejs/plugin-vue: ^5.1.4
     - @vitejs/plugin-vue-jsx: ^4.0.1
@@ -28,7 +30,9 @@ The following dependencies are required to run the application:
     - vite: ^5.4.8
 
 ### Scripts
+
 The following scripts are available:
+
     - dev: Starts the development server using Vite.
     - build: Builds the application for production.
     - preview: Starts the preview server using Vite.
