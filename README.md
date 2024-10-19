@@ -66,13 +66,14 @@ npm run lint
 
 ## 2.Input the number of item you want to purchase using the keypad
 
+![alt text](image-5.png)
 ![alt text](image-2.png)
 
 ## 3. Insert desired bill
 
+![alt text](public/readme-images/bill.PNG)
 ![alt text](image-4.png)
 
 ## 4. Hit ok and it will display the change
 
 ![alt text](image-3.png)
-
