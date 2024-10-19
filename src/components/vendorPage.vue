@@ -195,7 +195,7 @@ const vendingItems = ref([
   }
 
   @media (max-width: 576px) {
-    padding: 0em 1em;
+    padding: 2em 1em;
   }
 }
 </style>

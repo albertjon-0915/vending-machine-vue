@@ -80,6 +80,23 @@ $secondary-bg-color: #07ebdca1;
   padding: 0.5em;
   gap: 1em;
 
+  &::-webkit-scrollbar {
+    width: 0.5em;
+  }
+
+  &::-webkit-scrollbar-track {
+    margin-block: 0.9em;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: lighten($border-bgPrice-color, 15%);
+    border-radius: 5px;
+
+    &:hover {
+      background: $border-bgPrice-color;
+    }
+  }
+
   li {
     all: unset;
     position: relative;
