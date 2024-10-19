@@ -46,18 +46,6 @@ npm install
 npm run dev
 ```
 
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
-
 # Usage
 
 ## 1. You can browse item on vending machine
@@ -76,13 +64,8 @@ npm run lint
 
 ![alt text](image-3.png)
 
+## 5. Alternatively we can monitor bills, owed and your change just right below the input field
 
-## 5. Alternatively we can monitor bills, owed and your change here
-
-![alt text](image-9.png)
-
-![alt text](image-8.png)
-
-![alt text](image-6.png)
+![alt text](image-10.png)
 
 ![alt text](image-7.png)
