@@ -4,7 +4,7 @@ The Vending Machine project is a simple user-friendly Vue.js application that
 simulates a real vending machine. Users can easily input item numbers
 and view their selections through an intuitive interface.
 
-[Project](https://vending-machine-vue.vercel.app/)
+[ProjectLink](https://vending-machine-vue.vercel.app/)
 
 ## Table of Contents
 
